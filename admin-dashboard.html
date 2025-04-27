@@ -1,0 +1,89 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Billionaire Picks Admin Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background: #000;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+    }
+    header {
+      background: #00ff99;
+      color: black;
+      padding: 20px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      box-shadow: 0 2px 10px #00ff99;
+    }
+    .container {
+      padding: 20px;
+    }
+    .card {
+      background: #111;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 0 10px #00ff99;
+    }
+    h3 {
+      margin-top: 0;
+      color: #00ff99;
+    }
+    a, button {
+      background: #00ff99;
+      color: black;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      cursor: pointer;
+      display: inline-block;
+      margin-top: 10px;
+    }
+    a:hover, button:hover {
+      background: #00cc77;
+    }
+  </style>
+</head>
+<body>
+  <header>Billionaire Picks - Admin Dashboard</header>
+  <div class="container"><div class="card">
+  <h3>Update Predictions</h3>
+  <p>Open the Google Sheet linked below to update all predictions in real time.</p>
+  <a href="https://docs.google.com/spreadsheets/d/1Vr_ZP4X2hLXa3mP_pO6hZshpW9N7uDeAeuHPWb9fb6E/edit?usp=sharing" target="_blank">Open Google Sheet</a>
+</div>
+
+<div class="card">
+  <h3>Track Website Performance</h3>
+  <p>Use analytics tools like Google Analytics, Hotjar, or Fathom to track traffic and performance.</p>
+  <a href="https://analytics.google.com" target="_blank">Go to Analytics</a>
+</div>
+
+<div class="card">
+  <h3>Submit Blog Content</h3>
+  <p>You can write content manually in the HTML or eventually connect to a CMS like Notion or Google Docs.</p>
+  <button onclick="alert('Coming Soon!')">Manage Blog</button>
+</div>
+
+<div class="card">
+  <h3>Contact Form Responses</h3>
+  <p>Check form submissions using FormSubmit, Formspree, or your chosen tool.</p>
+  <button onclick="alert('Form responses feature coming soon!')">Check Messages</button>
+</div>
+
+<div class="card">
+  <h3>Logout</h3>
+  <button onclick="logout()">Logout</button>
+</div>
+
+  </div>  <script>
+    function logout() {
+      window.location.href = "admin-login.html";
+    }
+  </script></body>
+</html>

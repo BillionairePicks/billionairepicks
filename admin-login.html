@@ -1,0 +1,83 @@
+<!-- admin-login.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Login - Billionaire Picks</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background: #000;
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .login-container {
+      background: #111;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px #00ff99;
+      width: 90%;
+      max-width: 400px;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #00ff99;
+    }
+    input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      margin: 15px 0;
+      border: none;
+      border-radius: 8px;
+      background: #222;
+      color: white;
+      font-size: 16px;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #00ff99;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .error {
+      color: red;
+      margin-top: 10px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h2>Admin Login</h2>
+    <form onsubmit="return checkPassword()">
+      <input type="password" id="password" placeholder="Enter admin password" required />
+      <button type="submit">Login</button>
+      <div class="error" id="error-msg"></div>
+    </form>
+  </div>
+
+  <script>
+    function checkPassword() {
+      const password = document.getElementById("password").value;
+      if (password === "Hustlersdomain.1") {
+        window.location.href = "admin-dashboard.html";
+        return false;
+      } else {
+        document.getElementById("error-msg").textContent = "Incorrect password!";
+        return false;
+      }
+    }
+  </script>
+</body>
+</html>
