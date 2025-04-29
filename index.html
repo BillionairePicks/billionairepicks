@@ -1,89 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Billionaire Picks</title>
-
-  <!-- Add the style boost here -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
-      background-color: #111;
-      color: #eee;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    a {
-      color: #00e0ff;
-    }
-
-    a:hover {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #000;
       color: #fff;
-      text-decoration: underline;
     }
 
-    h1, h2, h3 {
-      color: #00e0ff;
+    header {
+      background: #00ff99;
+      padding: 20px;
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      color: #000;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 60px 20px;
+      background: linear-gradient(145deg, #000000, #0f0f0f);
+    }
+
+    .hero h1 {
+      font-size: 36px;
+      color: #00ff99;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #ccc;
+    }
+
+    .section {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .card {
+      background: #111;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 12px #00ff99;
+    }
+
+    h2 {
+      color: #00ff99;
+      margin-top: 0;
+    }
+
+    a.button {
+      display: inline-block;
+      background: #00ff99;
+      color: #000;
+      padding: 12px 18px;
+      border-radius: 8px;
+      font-weight: bold;
+      text-decoration: none;
+      margin-top: 15px;
+    }
+
+    a.button:hover {
+      background: #00cc77;
+    }
+
+    footer {
+      background: #111;
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      color: #888;
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 28px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
     }
   </style>
 </head>
-<meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Billionaire Picks – Home</title>
-  <link rel="stylesheet" href="css/style.css">
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="loader/style.css">  
-</head>
 <body>
-  <!-- Navigation -->
-  <nav>
-    <div class="container">
-      <div class="logo">
-        <h1><img src="logo.png" alt="Billionaire Picks Logo" style="height: 180px;"></h1>
-      </div>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="predictions.html">Predictions</a></li>
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="premium.html">Premium</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </div>
-  </nav>
 
-  <!-- Hero Section -->
-  <header class="hero">
-    <div class="container">
-      <h2>The Winning Mindset</h2>
-      <p>Welcome to Billionaire Picks – your source for the best soccer betting insights. Our picks are manually updated daily by SSM, keeping you ahead with expert advice.</p>
-      <a href="predictions.html" class="btn">See Today's Picks</a>
-    </div>
+  <header>
+    Billionaire Picks
   </header>
 
+  <div class="hero">
+    <h1>Your Trusted Football Prediction Partner</h1>
+    <p>AI-powered. Trusted by hundreds. Winning made simple.</p>
+    <a href="#predictions" class="button">See Predictions</a>
+  </div>
 
-  <!-- Footer -->
-  <footer style="background-color: #000; color: #fff; padding: 30px 20px; text-align: center;">
-  <div style="margin-bottom: 10px;">
-    <strong>Follow Billionaire Picks</strong>
+  <div class="section" id="predictions">
+    <div class="card">
+      <h2>Today’s Predictions</h2>
+      <p>We update our predictions daily using advanced stats and AI insights. Check our Google Sheet below:</p>
+      <a class="button" href="https://docs.google.com/spreadsheets/d/1pOa0RU5YkqMXYUBDWNLt3A40dYaeTiejsKS6SJpCzP4/edit?usp=sharing" target="_blank">View Sheet</a>
+    </div>
+
+    <div class="card">
+      <h2>About Us</h2>
+      <p>Billionaire Picks is built by football lovers from Soweto, combining passion with data-driven predictions to help bettors win consistently.</p>
+    </div>
+
+    <div class="card">
+      <h2>Contact Us</h2>
+      <p>Have a question, feedback or want to collaborate? Reach out using the contact page or email us at: <strong>support@billionairepicks.com</strong></p>
+    </div>
   </div>
-  <div style="margin-bottom: 15px;">
-    <a href="https://www.instagram.com/billion_picks?igsh=MXhyY3owcnBzbm00aQ==" target="_blank" style="margin: 0 10px; color: #fff; text-decoration: none;">
-      Instagram
-    </a> |
-    <a href="https://www.facebook.com/share/165rJK8GVA/" target="_blank" style="margin: 0 10px; color: #fff; text-decoration: none;">
-      Facebook
-    </a> |
-    <a href="mailto:billionairepicks999@gmail.com" style="margin: 0 10px; color: #fff; text-decoration: none;">
-      Email Us
-    </a>
-  </div>
-  <div style="font-size: 14px; opacity: 0.8;">
-    &copy; 2025 Billionaire Picks | Built by SSM
-  </div>
-</footer>
+
+  <footer>
+    &copy; 2025 Billionaire Picks. All rights reserved.
+  </footer>
+
 </body>
 </html>
