@@ -1,77 +1,183 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Billionaire Picks</title>
-
-  <!-- Add the style boost here -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Billionaire Picks – Home</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
-      background-color: #111;
-      color: #eee;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background-color: #0D0D0D;
+      color: #fff;
     }
 
     a {
-      color: #00e0ff;
+      color: #00BFFF;
+      text-decoration: none;
     }
 
     a:hover {
-      color: #fff;
-      text-decoration: underline;
+      color: #FFD700;
     }
 
     h1, h2, h3 {
-      color: #00e0ff;
+      color: #FFD700;
+    }
+
+    .sidebar {
+      height: 100vh;
+      width: 250px;
+      position: fixed;
+      background-color: #1A1A1A;
+      padding-top: 20px;
+      transition: 0.3s;
+      overflow-x: hidden;
+    }
+
+    .sidebar a {
+      padding: 15px 25px;
+      display: block;
+      font-size: 16px;
+    }
+
+    .sidebar .logo {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .sidebar .logo img {
+      height: 140px;
+    }
+
+    .main-content {
+      margin-left: 250px;
+      padding: 20px;
+      transition: 0.3s;
+    }
+
+    .toggle-btn {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      background: #FFD700;
+      border: none;
+      color: #000;
+      padding: 10px;
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    .hero {
+      padding: 60px 20px;
+      background-color: #111;
+      text-align: center;
+    }
+
+    .hero h2 {
+      font-size: 36px;
+      margin-bottom: 20px;
+      color: #FFD700;
+    }
+
+    .hero p {
+      font-size: 18px;
+      max-width: 600px;
+      margin: 0 auto 30px;
+    }
+
+    .btn {
+      padding: 12px 24px;
+      background-color: #00BFFF;
+      color: #fff;
+      border: none;
+      font-weight: bold;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+
+    footer {
+      background-color: #000;
+      color: #fff;
+      text-align: center;
+      padding: 30px 20px;
+    }
+
+    footer a {
+      color: #FFD700;
+      margin: 0 10px;
+    }
+
+    /* Toggle sidebar JS effect */
+    .sidebar.collapsed {
+      width: 0;
+      padding: 0;
+    }
+
+    .main-content.collapsed {
+      margin-left: 0;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+      }
+
+      .main-content {
+        margin-left: 0;
+      }
+
+      .toggle-btn {
+        left: 10px;
+      }
     }
   </style>
 </head>
-<meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Billionaire Picks – Home</title>
-  <link rel="stylesheet" href="style.css">
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="loader/style.css">  
-</head>
 <body>
-  <!-- Navigation -->
-  <nav>
-    <div class="container">
-      <div class="logo">
-        <h1><img src="logo.png" alt="Billionaire Picks Logo" style="height: 180px;"></h1>
-      </div>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="predictions.html">Predictions</a></li>
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="premium.html">Premium</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
+
+  <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+
+  <div class="sidebar" id="sidebar">
+    <div class="logo">
+      <img src="logo.png" alt="Billionaire Picks Logo">
     </div>
-  </nav>
-
-  <!-- Hero Section -->
-  <header class="hero">
-    <div class="container">
-      <h2>The Winning Mindset</h2>
-      <p>Welcome to Billionaire Picks – your source for the best soccer betting insights. Our picks are manually updated daily by SSM, keeping you ahead with expert advice.</p>
-      <a href="predictions.html" class="btn">See Today's Picks</a>
-    </div>
-  </header>
-
-
-  <!-- Footer -->
-  <footer style="background-color: #000; color: #fff; padding: 30px 20px; text-align: center;">
-  <div style="margin-bottom: 10px;">
-    <strong>Follow Billionaire Picks</strong>
+    <a href="index.html">Home</a>
+    <a href="predictions.html">Predictions</a>
+    <a href="about.html">About Us</a>
+    <a href="premium.html">Premium</a>
+    <a href="contact.html">Contact</a>
   </div>
-  <div style="margin-bottom: 15px;">
-    <a href="https://www.instagram.com/billion_picks?igsh=MXhyY3owcnBzbm00aQ==" target="_blank" style="margin: 0 10px; color: #fff; text-decoration: none;">>
-</footer>
+
+  <div class="main-content" id="main">
+    <header class="hero">
+      <h2>The Winning Mindset</h2>
+      <p>Welcome to Billionaire Picks – your ultimate destination for expert soccer betting insights. Our selections are manually updated by SSM to help you stay ahead of the game.</p>
+      <a href="predictions.html" class="btn">See Today’s Picks</a>
+    </header>
+  </div>
+
+  <footer>
+    <div><strong>Follow Billionaire Picks</strong></div>
+    <div style="margin: 10px 0;">
+      <a href="https://www.instagram.com/billion_picks?igsh=MXhyY3owcnBzbm00aQ==" target="_blank">Instagram</a> |
+      <a href="https://www.facebook.com/share/165rJK8GVA/" target="_blank">Facebook</a> |
+      <a href="mailto:billionairepicks999@gmail.com">Email Us</a>
+    </div>
+    <div style="font-size: 14px; opacity: 0.8;">
+      &copy; 2025 Billionaire Picks | Built by SSM
+    </div>
+  </footer>
+
+  <script>
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('collapsed');
+      document.getElementById('main').classList.toggle('collapsed');
+    }
+  </script>
+
 </body>
-  </html>
+</html>
