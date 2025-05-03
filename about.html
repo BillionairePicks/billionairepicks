@@ -1,18 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>About Us – Billionaire Picks</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="loader/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-
   <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
-      background-color: #111;
-      color: #eee;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Montserrat', sans-serif;
+      background-color: #0b0b0b;
+      color: #eeeeee;
+      display: flex;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 240px;
+      background-color: #000;
+      height: 100vh;
+      padding: 20px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-right: 1px solid rgba(0, 224, 255, 0.2);
+    }
+
+    .sidebar .logo img {
+      height: 120px;
+      margin-bottom: 20px;
+    }
+
+    .sidebar nav a {
+      display: block;
+      color: #00e0ff;
+      text-decoration: none;
+      margin: 10px 0;
+      transition: 0.3s;
+    }
+
+    .sidebar nav a:hover,
+    .sidebar nav a.active {
+      color: #00ffaa;
+    }
+
+    /* Main content */
+    .main {
+      margin-left: 240px;
+      padding: 40px 20px;
+      width: 100%;
+    }
+
+    h2, h3 {
+      color: #00e0ff;
+      margin-bottom: 10px;
     }
 
     a {
@@ -20,58 +69,11 @@
     }
 
     a:hover {
-      color: #fff;
-      text-decoration: underline;
-    }
-
-    h1, h2, h3 {
-      color: #00e0ff;
-    }
-
-    nav {
-      background-color: #000;
-      padding: 20px 0;
-    }
-
-    .container {
-      width: 90%;
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    .logo img {
-      height: 120px;
-    }
-
-    .nav-links {
-      list-style: none;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      padding: 0;
-    }
-
-    .nav-links li {
-      display: inline;
-    }
-
-    .nav-links a {
-      color: #eee;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .nav-links .active {
-      color: #00e0ff;
-    }
-
-    .page-header {
-      text-align: center;
-      padding: 60px 0 20px;
+      color: #00ffaa;
     }
 
     .about {
-      padding: 40px 0;
+      margin-top: 20px;
     }
 
     .about h3 {
@@ -79,69 +81,77 @@
     }
 
     footer {
+      margin-top: 40px;
+      padding: 20px;
+      text-align: center;
       background-color: #000;
       color: #fff;
-      padding: 30px 20px;
-      text-align: center;
     }
 
     footer a {
-      color: #fff;
+      color: #00e0ff;
       margin: 0 10px;
-      text-decoration: none;
     }
 
-    footer a:hover {
-      color: #00e0ff;
+    @media (max-width: 768px) {
+      .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 10px;
+      }
+
+      .sidebar .logo {
+        display: none;
+      }
+
+      .main {
+        margin-left: 0;
+        padding: 20px 10px;
+      }
     }
   </style>
 </head>
 <body>
-
-  <nav>
-    <div class="container">
-      <div class="logo">
-        <img src="logo.png" alt="Billionaire Picks Logo">
-      </div>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="predictions.html">Predictions</a></li>
-        <li><a href="about.html" class="active">About Us</a></li>
-        <li><a href="premium.html">Premium</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
+  <aside class="sidebar">
+    <div class="logo">
+      <img src="logo.png" alt="Billionaire Picks Logo">
     </div>
-  </nav>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="predictions.html">Predictions</a>
+      <a href="about.html" class="active">About Us</a>
+      <a href="premium.html">Premium</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="footer-note" style="font-size: 12px; color: #888;">© 2025 Billionaire Picks</div>
+  </aside>
 
-  <header class="page-header">
-    <div class="container">
+  <main class="main">
+    <header class="page-header">
       <h2>About Billionaire Picks</h2>
-    </div>
-  </header>
+      <p style="opacity: 0.8;">Precision. Discipline. Excellence.</p>
+    </header>
 
-  <section class="about">
-    <div class="container">
+    <section class="about">
       <h3>Our Story</h3>
       <p>Billionaire Picks began with a bold vision — to offer free, intelligent soccer betting insights to those who take betting seriously. Founded in Soweto by three brothers with a shared love for the game, we’ve combined years of experience with data-driven strategies to create a platform that prioritizes quality, honesty, and consistency. Our community is built on trust, and our picks are backed by research — not luck.</p>
 
       <h3>Meet SSM</h3>
       <p>SSM stands for the three founders behind Billionaire Picks. As brothers, we each bring a unique mindset and skill set — from analytics to match analysis to bankroll strategy. Together, we represent a united front for bettors who demand excellence and results. Billionaire Picks isn’t just a brand — it’s a lifestyle built around precision, discipline, and the hunger to win smart.</p>
-    </div>
-  </section>
+    </section>
 
-  <footer>
-    <div style="margin-bottom: 10px;">
-      <strong>Follow Billionaire Picks</strong>
-    </div>
-    <div style="margin-bottom: 15px;">
-      <a href="https://www.instagram.com/billion_picks?igsh=MXhyY3owcnBzbm00aQ==" target="_blank">Instagram</a> |
-      <a href="https://www.facebook.com/share/165rJK8GVA/" target="_blank">Facebook</a> |
-      <a href="mailto:billionairepicks999@gmail.com">Email Us</a>
-    </div>
-    <div style="font-size: 14px; opacity: 0.8;">
-      &copy; 2025 Billionaire Picks | Built by SSM
-    </div>
-  </footer>
-
+    <footer>
+      <div><strong>Follow Billionaire Picks</strong></div>
+      <div>
+        <a href="https://www.instagram.com/billion_picks?igsh=MXhyY3owcnBzbm00aQ==" target="_blank">Instagram</a> |
+        <a href="https://www.facebook.com/share/165rJK8GVA/" target="_blank">Facebook</a> |
+        <a href="mailto:billionairepicks999@gmail.com">Email Us</a>
+      </div>
+      <div style="font-size: 14px; opacity: 0.8;">&copy; 2025 Billionaire Picks | Built by SSM</div>
+    </footer>
+  </main>
 </body>
-   </html>
+  </html>
