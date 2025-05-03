@@ -1,115 +1,187 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Billionaire Picks</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Billionaire Picks – Predictions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 
-  <!-- Add the style boost here -->
   <style>
     body {
-      background-color: #111;
-      color: #eee;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background-color: #0D0D0D;
+      color: #fff;
     }
 
     a {
-      color: #00e0ff;
+      color: #00BFFF;
+      text-decoration: none;
     }
 
     a:hover {
-      color: #fff;
-      text-decoration: underline;
+      color: #FFD700;
     }
 
-    h1, h2, h3 {
-      color: #00e0ff;
+    .sidebar {
+      height: 100%;
+      width: 250px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: #111;
+      padding-top: 30px;
+      transition: 0.3s;
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 15px 20px;
+      font-size: 16px;
+      color: #FFD700;
+    }
+
+    .sidebar a.active,
+    .sidebar a:hover {
+      background-color: #222;
+      color: #00BFFF;
+    }
+
+    .main-content {
+      margin-left: 250px;
+      padding: 20px;
+      transition: 0.3s;
+    }
+
+    .toggle-btn {
+      position: fixed;
+      left: 10px;
+      top: 10px;
+      font-size: 26px;
+      color: #FFD700;
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    h2 {
+      color: #FFD700;
+    }
+
+    #predictions table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    #predictions th,
+    #predictions td {
+      padding: 10px;
+      border: 1px solid #333;
+    }
+
+    #predictions th {
+      background-color: #111;
+      color: #00BFFF;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      background-color: #000;
+      color: #fff;
+    }
+
+    footer a {
+      color: #fff;
+      margin: 0 10px;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 0;
+        overflow: hidden;
+      }
+
+      .main-content {
+        margin-left: 0;
+      }
+
+      .sidebar.open {
+        width: 250px;
+      }
+
+      .main-content.shift {
+        margin-left: 250px;
+      }
     }
   </style>
 </head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Billionaire Picks – Predictions</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="loader/style.css">  
-</head>
 <body>
-  <nav>
-    <div class="container">
-      <div class="logo">
-        <h1><img src="logo.png" alt="Billionaire Picks Logo" style="height: 180px;"></h1>
-      </div>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="predictions.html" class="active">Predictions</a></li>
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="premium.html">Premium</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
+
+  <div class="toggle-btn" onclick="toggleSidebar()">☰</div>
+
+  <div class="sidebar" id="sidebar">
+    <a href="index.html">Home</a>
+    <a href="predictions.html" class="active">Predictions</a>
+    <a href="about.html">About Us</a>
+    <a href="premium.html">Premium</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <div class="main-content" id="main">
+    <h2>Today's Predictions</h2>
+    <p>Updated daily with the most accurate picks and insights.</p>
+
+    <section id="predictions">
+      <div id="predictions-table">Loading predictions...</div>
+    </section>
+  </div>
+
+  <footer>
+    <div><strong>Follow Billionaire Picks</strong></div>
+    <div style="margin: 10px 0;">
+      <a href="https://www.instagram.com/billion_picks?igsh=MXhyY3owcnBzbm00aQ==" target="_blank">Instagram</a> |
+      <a href="https://www.facebook.com/share/165rJK8GVA/" target="_blank">Facebook</a> |
+      <a href="mailto:billionairepicks999@gmail.com">Email Us</a>
     </div>
-  </nav>
+    <div style="font-size: 14px; opacity: 0.7;">&copy; 2025 Billionaire Picks | Powered by SSM</div>
+  </footer>
 
-  <header class="page-header">
-    <div class="container">
-      <h2>Daily Predictions</h2>
-      <p>Check back daily for the latest picks from SSM.</p>
-    </div>
-  </header>
-
-  <section class="predictions">
-    <div class="container">
-      <!-- Add additional prediction cards as needed -->
-      <section id="predictions" style="background: #000; color: #fff; padding: 20px;">
-  <h2 style="color:#00ff99;">Today's Predictions</h2>
-  <div id="predictions-table">Loading predictions...</div>
-</section>
-
-<script>
-  async function loadPredictions() {
-    const sheetID = "1pOa0RU5YkqMXYUBDWNLt3A40dYaeTiejsKS6SJpCzP4";
-    const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetID}/values/Sheet1?key=YOUR_API_KEY`;
-
-    const response = await fetch(url);
-    const data = await response.json();
-    const rows = data.values;
-
-    let html = "<table border='1' style='width:100%; border-collapse: collapse;'>";
-    html += "<tr>" + rows[0].map(h => `<th style='color:#00ff99; padding: 8px;'>${h}</th>`).join("") + "</tr>";
-
-    for (let i = 1; i < rows.length; i++) {
-      html += "<tr>" + rows[i].map(cell => `<td style='padding: 8px;'>${cell}</td>`).join("") + "</tr>";
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.getElementById("sidebar");
+      const main = document.getElementById("main");
+      sidebar.classList.toggle("open");
+      main.classList.toggle("shift");
     }
 
-    html += "</table>";
-    document.getElementById("predictions-table").innerHTML = html;
-  }
+    async function loadPredictions() {
+      const sheetID = "1pOa0RU5YkqMXYUBDWNLt3A40dYaeTiejsKS6SJpCzP4";
+      const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetID}/values/Sheet1?key=YOUR_API_KEY`;
 
-  loadPredictions();
-</script>
-    </div>
-  </section>
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+        const rows = data.values;
 
-      <footer style="background-color: #000; color: #fff; padding: 30px 20px; text-align: center;">
-  <div style="margin-bottom: 10px;">
-    <strong>Follow Billionaire Picks</strong>
-  </div>
-  <div style="margin-bottom: 15px;">
-    <a href="https://www.instagram.com/billion_picks?igsh=MXhyY3owcnBzbm00aQ==" target="_blank" style="margin: 0 10px; color: #fff; text-decoration: none;">
-      Instagram
-    </a> |
-    <a href="https://www.facebook.com/share/165rJK8GVA/" target="_blank" style="margin: 0 10px; color: #fff; text-decoration: none;">
-      Facebook
-    </a> |
-    <a href="mailto:billionairepicks999@gmail.com" style="margin: 0 10px; color: #fff; text-decoration: none;">
-      Email Us
-    </a>
-  </div>
-  <div style="font-size: 14px; opacity: 0.8;">
-    &copy; 2025 Billionaire Picks | Built by SSM
-  </div>
-</footer>
+        let html = "<table>";
+        html += "<tr>" + rows[0].map(h => `<th>${h}</th>`).join("") + "</tr>";
+
+        for (let i = 1; i < rows.length; i++) {
+          html += "<tr>" + rows[i].map(cell => `<td>${cell}</td>`).join("") + "</tr>";
+        }
+
+        html += "</table>";
+        document.getElementById("predictions-table").innerHTML = html;
+      } catch (error) {
+        document.getElementById("predictions-table").innerHTML = "<p style='color:#FF6B6B;'>Failed to load predictions. Please try again later.</p>";
+      }
+    }
+
+    loadPredictions();
+  </script>
 </body>
 </html>
