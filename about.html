@@ -4,87 +4,114 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>About Us – Billionaire Picks</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
-      margin: 0;
-      background-color: #111;
-      color: #eee;
+     margin: 0;
       font-family: 'Montserrat', sans-serif;
-      display: flex;
+      background-color: #0D0D0D;
+      color: #fff;
+    }
+
+    a {
+      color: #00BFFF;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #FFD700;
     }
 
     .sidebar {
-      width: 240px;
-      background-color: #000;
-      padding: 30px 20px;
-      min-height: 100vh;
-    }
-
-    .sidebar h1 {
-      font-size: 26px;
-      color: #00e0ff;
-      margin-bottom: 30px;
+      height: 100%;
+      width: 250px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: #111;
+      padding-top: 30px;
+      transition: 0.3s;
     }
 
     .sidebar a {
       display: block;
-      color: #eee;
-      text-decoration: none;
-      margin: 15px 0;
-      font-weight: 500;
+      padding: 15px 20px;
+      font-size: 16px;
+      color: #FFD700;
     }
 
     .sidebar a.active,
     .sidebar a:hover {
-      color: #00e0ff;
+      background-color: #222;
+      color: #00BFFF;
     }
 
-    .content {
-      flex-grow: 1;
-      padding: 40px 30px;
+    .main-content {
+      margin-left: 250px;
+      padding: 20px;
+      transition: 0.3s;
     }
 
-    .content h2 {
-      color: #00e0ff;
-      font-size: 28px;
-      margin-bottom: 20px;
+    .toggle-btn {
+      position: fixed;
+      left: 10px;
+      top: 10px;
+      font-size: 26px;
+      color: #FFD700;
+      cursor: pointer;
+      z-index: 1000;
     }
 
-    .content h3 {
-      color: #00e0ff;
+    h2 {
+      color: #FFD700;
+    }
+
+    h3 {
+      color: #00BFFF;
       margin-top: 30px;
     }
 
     footer {
-      margin-top: 50px;
+      text-align: center;
+      padding: 30px 20px;
       background-color: #000;
       color: #fff;
-      padding: 30px 20px;
-      text-align: center;
     }
 
     footer a {
       color: #fff;
-      text-decoration: none;
       margin: 0 10px;
     }
 
     footer a:hover {
-      color: #00e0ff;
+      color: #00BFFF;
     }
 
-    footer small {
-      display: block;
-      margin-top: 10px;
-      font-size: 14px;
-      opacity: 0.8;
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 0;
+        overflow: hidden;
+      }
+
+      .main-content {
+        margin-left: 0;
+      }
+
+      .sidebar.open {
+        width: 250px;
+      }
+
+      .main-content.shift {
+        margin-left: 250px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="sidebar">
-    <h1>Billionaire Picks</h1>
+
+  <div class="toggle-btn" onclick="toggleSidebar()">☰</div>
+
+  <div class="sidebar" id="sidebar">
     <a href="index.html">Home</a>
     <a href="predictions.html">Predictions</a>
     <a href="about.html" class="active">About Us</a>
@@ -92,23 +119,45 @@
     <a href="contact.html">Contact</a>
   </div>
 
-  <div class="content">
+  <div class="main-content" id="main">
     <h2>About Billionaire Picks</h2>
-    <h3>Our Story</h3>
-    <p>Billionaire Picks was born from a passion for soccer and a drive to deliver winning insights. Founded by SSM, our team started in Soweto with a simple goal: to provide reliable, expert soccer betting picks for free while building a community for serious bettors. With years of experience and an eye for detail, we are committed to honesty, precision, and excellence.</p>
+    <p>Billionaire Picks was founded with one goal in mind: to help sports enthusiasts make smarter, more informed betting decisions using AI-powered insights and a track record of consistent performance.</p>
 
-    <h3>Meet SSM</h3>
-    <p>SSM represents the three brothers behind Billionaire Picks. Each of us brings a unique perspective to the game and our predictions, combining passion with a disciplined approach to soccer betting.</p>
+    <h3>Who We Are</h3>
+    <p>We are a group of passionate individuals from Soweto who came together to create a game-changing platform. Our deep love for football and our experience in betting led us to build a trusted source for predictions and analysis.</p>
 
-    <footer>
-      <div><strong>Follow Billionaire Picks</strong></div>
-      <div style="margin-top: 10px;">
-        <a href="https://www.instagram.com/billion_picks?igsh=MXhyY3owcnBzbm00aQ==" target="_blank">Instagram</a> |
-        <a href="https://www.facebook.com/share/165rJK8GVA/" target="_blank">Facebook</a> |
-        <a href="mailto:billionairepicks999@gmail.com">Email Us</a>
-      </div>
-      <small>&copy; 2025 Billionaire Picks | Powered by SSM</small>
-    </footer>
+    <h3>Our Vision</h3>
+    <p>To become Africa’s most trusted sports prediction brand and to empower young bettors with tools, data, and education that improve their results over time.</p>
+
+    <h3>Why Choose Us?</h3>
+    <ul>
+      <li>Accurate, AI-enhanced football predictions</li>
+      <li>Professional and transparent reporting</li>
+      <li>Passionate team with a mission to win with you</li>
+    </ul>
+
+    <h3>Connect With Us</h3>
+    <p>Follow us on social media or contact us directly if you'd like to learn more.</p>
   </div>
+
+  <footer>
+    <div><strong>Follow Billionaire Picks</strong></div>
+    <div style="margin: 10px 0;">
+      <a href="https://www.instagram.com/billion_picks?igsh=MXhyY3owcnBzbm00aQ==" target="_blank">Instagram</a> |
+      <a href="https://www.facebook.com/share/165rJK8GVA/" target="_blank">Facebook</a> |
+      <a href="mailto:billionairepicks999@gmail.com">Email Us</a>
+    </div>
+    <div style="font-size: 14px; opacity: 0.7;">&copy; 2025 Billionaire Picks | Powered by SSM</div>
+  </footer>
+
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.getElementById("sidebar");
+      const main = document.getElementById("main");
+      sidebar.classList.toggle("open");
+      main.classList.toggle("shift");
+    }
+  </script>
+
 </body>
-        </html>
+</html>
