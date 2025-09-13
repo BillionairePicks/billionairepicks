@@ -77,6 +77,19 @@ window.addEventListener("click", (e) => {
     signupModal.style.display = "none";
   }
 });
+
+document.getElementById("signupForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  // ✅ Check reCAPTCHA
+  const recaptchaResponse = grecaptcha.getResponse();
+  if (!recaptchaResponse) {
+    alert("Please verify that you are not a robot.");
+    return;
+  }
+
+  // continue with Firebase signup...
+});
 // Show button when scrolled down
 window.addEventListener("scroll", () => {
   if (window.scrollY > 300) {
