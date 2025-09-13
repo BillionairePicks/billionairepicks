@@ -38,3 +38,19 @@ async function loadEvents(sport, containerId) {
 loadEvents("Soccer", "live-football");
 loadEvents("Basketball", "live-basketball");
 loadEvents("Tennis", "live-tennis");
+// Back to Top Button
+const backToTopBtn = document.getElementById("backToTop");
+
+// Show button when scrolled down
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 300) {
+    backToTopBtn.style.display = "block";
+  } else {
+    backToTopBtn.style.display = "none";
+  }
+});
+
+// Smooth scroll to top
+backToTopBtn.addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
