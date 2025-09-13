@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>StatStake - Sports Stats & Predictions</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StatStake</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-  <!-- Back to Top Button -->
-<button id="backToTop">↑ Top</button>
 <body>
   <!-- Header -->
   <header>
@@ -17,120 +15,166 @@
       <a href="#predictions">Predictions</a>
       <a href="#about">About</a>
     </nav>
-  </header>
-  <div class="logo">StatStake</div>
-  <nav>
-    <a href="#stats">Stats</a>
-    <a href="#predictions">Predictions</a>
-    <a href="#about">About</a>
-  </nav>
-  <button id="loginBtn" class="login-btn">Login</button>
-  <header>
-  <div class="logo">StatStake</div>
-  <nav>
-    <a href="#stats">Stats</a>
-    <a href="#predictions">Predictions</a>
-    <a href="#about">About</a>
-  </nav>
-  <div class="auth-buttons">
-    <button id="loginBtn" class="login-btn">Login</button>
-    <button id="signupBtn" class="signup-btn">Sign Up</button>
-  </div>
-</header>
-<!-- Sign Up Modal -->
-<div id="signupModal" class="modal">
-  <div class="modal-content">
-    <span id="closeSignup" class="close">&times;</span>
-    <h2>Create Your Account</h2>
-    <form>
-      <label for="signup-username">Username</label>
-      <input type="text" id="signup-username" required>
-
-      <label for="signup-email">Email</label>
-      <input type="email" id="signup-email" required>
-
-      <label for="signup-password">Password</label>
-      <input type="password" id="signup-password" required>
-
-      <label for="signup-confirm">Confirm Password</label>
-      <input type="password" id="signup-confirm" required>
-
-      <button type="submit" class="signup-submit">Sign Up</button>
-    </form>
-  </div>
-</div>
-  <!-- Hero Section -->
-  <section class="hero">
-    <h1>Sports Stats & Predictions</h1>
-    <p>Clean, data-driven insights to help you make smarter betting decisions.</p>
-    <a href="#stats" class="cta">Explore Stats</a>
-  </section>
-
-  <!-- Stats Section -->
-  <section id="stats" class="content">
-    <h2>Latest Stats</h2>
-    <div class="card-container">
-      <div class="card">
-        <h3>Football</h3>
-        <p>Top teams, player performance, win ratios.</p>
-      </div>
-      <div class="card">
-        <h3>Basketball</h3>
-        <p>Points per game, rebounds, assists, shooting accuracy.</p>
-      </div>
-      <div class="card">
-        <h3>Tennis</h3>
-        <p>Match history, serve stats, head-to-head comparisons.</p>
-      </div>
+    <div class="auth-buttons">
+      <button id="loginBtn" class="login-btn">Login</button>
+      <button id="signupBtn" class="signup-btn">Sign Up</button>
     </div>
+  </header>
+
+  <!-- Sections -->
+  <section id="stats" class="content">
+    <h2>Stats</h2>
+    <p>Live sports statistics will appear here.</p>
   </section>
 
-  <!-- Predictions Section -->
   <section id="predictions" class="content">
     <h2>Predictions</h2>
-    <div class="card-container">
-      <div class="card">
-        <h3>Football Picks</h3>
-        <p>Upcoming weekend match predictions with probabilities.</p>
-      </div>
-      <div class="card">
-        <h3>Basketball Insights</h3>
-        <p>Daily NBA predictions and betting value suggestions.</p>
-      </div>
-    </div>
+    <p>AI-powered betting insights coming soon.</p>
   </section>
 
-  <!-- About Section -->
   <section id="about" class="content">
     <h2>About StatStake</h2>
-    <p>StatStake provides clean, reliable stats and predictions for sports fans and bettors. 
-    Our mission is to give you a simple, data-driven edge in your sports decisions.</p>
+    <p>StatStake provides clean, reliable sports stats and predictions to help fans and bettors make smarter decisions.</p>
   </section>
 
-  <!-- Footer -->
-  <footer>
-    <p>© 2025 StatStake. All rights reserved.</p>
-  </footer>
+  <!-- Login Modal -->
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <span id="closeLogin" class="close">&times;</span>
+      <h2>Login</h2>
+      <form id="loginForm">
+        <label for="login-email">Email</label>
+        <input type="email" id="login-email" required />
 
-  <script src="script.js"></script>
+        <label for="login-password">Password</label>
+        <input type="password" id="login-password" required />
+
+        <button type="submit" class="login-submit">Login</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Sign Up Modal -->
+  <div id="signupModal" class="modal">
+    <div class="modal-content">
+      <span id="closeSignup" class="close">&times;</span>
+      <h2>Create Your Account</h2>
+      <form id="signupForm">
+        <label for="signup-username">Username</label>
+        <input type="text" id="signup-username" required />
+
+        <label for="signup-email">Email</label>
+        <input type="email" id="signup-email" required />
+
+        <label for="signup-password">Password</label>
+        <input type="password" id="signup-password" required />
+
+        <label for="signup-confirm">Confirm Password</label>
+        <input type="password" id="signup-confirm" required />
+
+        <button type="submit" class="signup-submit">Sign Up</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Back to Top Button -->
+  <button id="backToTop">↑ Top</button>
+
+  <!-- Firebase + Script -->
+  <script type="module">
+    // Import Firebase SDK
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } 
+      from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+    import { getFirestore, doc, setDoc, serverTimestamp } 
+      from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyAsSHeTgN10bkdywhlJoi_p4ni7bxUAm6c",
+  authDomain: "stat-stake.firebaseapp.com",
+  projectId: "stat-stake",
+  storageBucket: "stat-stake.firebasestorage.app",
+  messagingSenderId: "128167594111",
+  appId: "1:128167594111:web:20d36adbae750494efd74a",
+  measurementId: "G-H4HSTHZXX1"
+};
+    // Init Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    // ===== Login Modal =====
+    const loginBtn = document.getElementById("loginBtn");
+    const loginModal = document.getElementById("loginModal");
+    const closeLogin = document.getElementById("closeLogin");
+
+    loginBtn.onclick = () => loginModal.style.display = "block";
+    closeLogin.onclick = () => loginModal.style.display = "none";
+    window.onclick = (e) => { if (e.target === loginModal) loginModal.style.display = "none"; };
+
+    // ===== Signup Modal =====
+    const signupBtn = document.getElementById("signupBtn");
+    const signupModal = document.getElementById("signupModal");
+    const closeSignup = document.getElementById("closeSignup");
+
+    signupBtn.onclick = () => signupModal.style.display = "block";
+    closeSignup.onclick = () => signupModal.style.display = "none";
+    window.onclick = (e) => { if (e.target === signupModal) signupModal.style.display = "none"; };
+
+    // ===== Handle Sign Up =====
+    document.getElementById("signupForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const username = document.getElementById("signup-username").value;
+      const email = document.getElementById("signup-email").value;
+      const password = document.getElementById("signup-password").value;
+      const confirm = document.getElementById("signup-confirm").value;
+
+      if (password !== confirm) {
+        alert("Passwords do not match!");
+        return;
+      }
+
+      try {
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const uid = userCredential.user.uid;
+
+        await setDoc(doc(db, "users", uid), {
+          username,
+          email,
+          createdAt: serverTimestamp()
+        });
+
+        alert("Sign up successful!");
+        signupModal.style.display = "none";
+      } catch (error) {
+        alert(error.message);
+      }
+    });
+
+    // ===== Handle Login =====
+    document.getElementById("loginForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const email = document.getElementById("login-email").value;
+      const password = document.getElementById("login-password").value;
+
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+        alert("Login successful!");
+        loginModal.style.display = "none";
+      } catch (error) {
+        alert(error.message);
+      }
+    });
+
+    // ===== Back to Top =====
+    const backToTopBtn = document.getElementById("backToTop");
+    window.addEventListener("scroll", () => {
+      backToTopBtn.style.display = window.scrollY > 300 ? "block" : "none";
+    });
+    backToTopBtn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  </script>
 </body>
 </html>
-<section id="stats" class="content">
-  <h2>Latest Stats</h2>
-
-  <!-- Live stats sections -->
-  <div id="live-football" class="live-box">
-    <h3>Football</h3>
-    <p>Loading football matches...</p>
-  </div>
-
-  <div id="live-basketball" class="live-box">
-    <h3>Basketball</h3>
-    <p>Loading basketball games...</p>
-  </div>
-
-  <div id="live-tennis" class="live-box">
-    <h3>Tennis</h3>
-    <p>Loading tennis events...</p>
-  </div>
-</section>
