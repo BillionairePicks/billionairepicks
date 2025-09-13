@@ -71,8 +71,14 @@
 
         <label for="signup-confirm">Confirm Password</label>
         <input type="password" id="signup-confirm" required />
-
+        
+        <!-- ✅ Google reCAPTCHA -->
+  <div class="g-recaptcha" data-sitekey="6LdArMgrAAAAABfD_86cWF8KUZVVy2BlBxB1mXcs"></div>
+        
         <button type="submit" class="signup-submit">Sign Up</button>
+
+
+  <button type="submit" class="signup-submit">Sign Up</button>
       </form>
     </div>
   </div>
@@ -176,5 +182,6 @@ const firebaseConfig = {
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
   </script>
+ <script src="https://www.google.com/recaptcha/api.js" async defer></script> 
 </body>
 </html>
