@@ -59,6 +59,24 @@ window.addEventListener("click", (e) => {
   }
 });
 
+// Sign Up modal
+const signupBtn = document.getElementById("signupBtn");
+const signupModal = document.getElementById("signupModal");
+const closeSignup = document.getElementById("closeSignup");
+
+signupBtn.addEventListener("click", () => {
+  signupModal.style.display = "block";
+});
+
+closeSignup.addEventListener("click", () => {
+  signupModal.style.display = "none";
+});
+
+window.addEventListener("click", (e) => {
+  if (e.target === signupModal) {
+    signupModal.style.display = "none";
+  }
+});
 // Show button when scrolled down
 window.addEventListener("scroll", () => {
   if (window.scrollY > 300) {
