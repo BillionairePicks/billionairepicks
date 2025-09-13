@@ -1,183 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Stat Stake– Home</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Montserrat', sans-serif;
-      background-color: #0D0D0D;
-      color: #fff;
-    }
-
-    a {
-      color: #00BFFF;
-      text-decoration: none;
-    }
-
-    a:hover {
-      color: #FFD700;
-    }
-
-    h1, h2, h3 {
-      color: #FFD700;
-    }
-
-    .sidebar {
-      height: 100vh;
-      width: 250px;
-      position: fixed;
-      background-color: #1A1A1A;
-      padding-top: 20px;
-      transition: 0.3s;
-      overflow-x: hidden;
-    }
-
-    .sidebar a {
-      padding: 15px 25px;
-      display: block;
-      font-size: 16px;
-    }
-
-    .sidebar .logo {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
-    .sidebar .logo img {
-      height: 140px;
-    }
-
-    .main-content {
-      margin-left: 250px;
-      padding: 20px;
-      transition: 0.3s;
-    }
-
-    .toggle-btn {
-      position: fixed;
-      top: 15px;
-      left: 15px;
-      background: #FFD700;
-      border: none;
-      color: #000;
-      padding: 10px;
-      cursor: pointer;
-      z-index: 1000;
-    }
-
-    .hero {
-      padding: 60px 20px;
-      background-color: #111;
-      text-align: center;
-    }
-
-    .hero h2 {
-      font-size: 36px;
-      margin-bottom: 20px;
-      color: #FFD700;
-    }
-
-    .hero p {
-      font-size: 18px;
-      max-width: 600px;
-      margin: 0 auto 30px;
-    }
-
-    .btn {
-      padding: 12px 24px;
-      background-color: #00BFFF;
-      color: #fff;
-      border: none;
-      font-weight: bold;
-      border-radius: 4px;
-      text-transform: uppercase;
-    }
-
-    footer {
-      background-color: #000;
-      color: #fff;
-      text-align: center;
-      padding: 30px 20px;
-    }
-
-    footer a {
-      color: #FFD700;
-      margin: 0 10px;
-    }
-
-    /* Toggle sidebar JS effect */
-    .sidebar.collapsed {
-      width: 0;
-      padding: 0;
-    }
-
-    .main-content.collapsed {
-      margin-left: 0;
-    }
-
-    @media (max-width: 768px) {
-      .sidebar {
-        width: 100%;
-        height: auto;
-        position: relative;
-      }
-
-      .main-content {
-        margin-left: 0;
-      }
-
-      .toggle-btn {
-        left: 10px;
-      }
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StatStake - Sports Stats & Predictions</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Header -->
+  <header>
+    <div class="logo">StatStake</div>
+    <nav>
+      <a href="#stats">Stats</a>
+      <a href="#predictions">Predictions</a>
+      <a href="#about">About</a>
+    </nav>
+  </header>
 
-  <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Sports Stats & Predictions</h1>
+    <p>Clean, data-driven insights to help you make smarter betting decisions.</p>
+    <a href="#stats" class="cta">Explore Stats</a>
+  </section>
 
-  <div class="sidebar" id="sidebar">
-    <div class="logo">
-      <img src="logo.png" alt="Billionaire Picks Logo">
+  <!-- Stats Section -->
+  <section id="stats" class="content">
+    <h2>Latest Stats</h2>
+    <div class="card-container">
+      <div class="card">
+        <h3>Football</h3>
+        <p>Top teams, player performance, win ratios.</p>
+      </div>
+      <div class="card">
+        <h3>Basketball</h3>
+        <p>Points per game, rebounds, assists, shooting accuracy.</p>
+      </div>
+      <div class="card">
+        <h3>Tennis</h3>
+        <p>Match history, serve stats, head-to-head comparisons.</p>
+      </div>
     </div>
-    <a href="index.html">Home</a>
-    <a href="predictions.html">Stats</a>
-    <a href="about.html">About Us</a>
-    <a href="premium.html">Premium</a>
-    <a href="contact.html">Contact</a>
-  </div>
+  </section>
 
-  <div class="main-content" id="main">
-    <header class="hero">
-      <h2>The Winning Mindset</h2>
-      <p>Welcome to Stat Stake – your ultimate destination for expert soccer betting insights. Our selections are manually updated by SSM to help you stay ahead of the game.</p>
-      <a href="predictions.html" class="btn">See Today’s Picks</a>
-    </header>
-  </div>
+  <!-- Predictions Section -->
+  <section id="predictions" class="content">
+    <h2>Predictions</h2>
+    <div class="card-container">
+      <div class="card">
+        <h3>Football Picks</h3>
+        <p>Upcoming weekend match predictions with probabilities.</p>
+      </div>
+      <div class="card">
+        <h3>Basketball Insights</h3>
+        <p>Daily NBA predictions and betting value suggestions.</p>
+      </div>
+    </div>
+  </section>
 
+  <!-- About Section -->
+  <section id="about" class="content">
+    <h2>About StatStake</h2>
+    <p>StatStake provides clean, reliable stats and predictions for sports fans and bettors. 
+    Our mission is to give you a simple, data-driven edge in your sports decisions.</p>
+  </section>
+
+  <!-- Footer -->
   <footer>
-    <div><strong>Follow Stat Stake</strong></div>
-    <div style="margin: 10px 0;">
-      <a href="https://www.instagram.com/billion_picks?igsh=MXhyY3owcnBzbm00aQ==" target="_blank">Instagram</a> |
-      <a href="https://www.facebook.com/share/165rJK8GVA/" target="_blank">Facebook</a> |
-      <a href="mailto:billionairepicks999@gmail.com">Email Us</a>
-    </div>
-    <div style="font-size: 14px; opacity: 0.8;">
-      &copy; 2025 Billionaire Picks | Built by SSM
-    </div>
+    <p>© 2025 StatStake. All rights reserved.</p>
   </footer>
 
-  <script>
-    function toggleSidebar() {
-      document.getElementById('sidebar').classList.toggle('collapsed');
-      document.getElementById('main').classList.toggle('collapsed');
-    }
-  </script>
-
+  <script src="script.js"></script>
 </body>
 </html>
