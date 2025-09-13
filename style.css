@@ -108,3 +108,23 @@ footer {
   font-size: 0.9rem;
   color: #666;
 }
+.live-box {
+  margin: 1.5rem auto;
+  padding: 1rem 1.5rem;
+  background: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  max-width: 600px;
+  text-align: left;
+}
+
+.live-box h3 {
+  margin-bottom: 0.5rem;
+  color: #0077ff;
+}
+
+.live-box ul {
+  list-style: disc;
+  margin-left: 1.5rem;
+  margin-top: 0.5rem;
+}
