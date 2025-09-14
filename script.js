@@ -370,3 +370,125 @@ leagueFilter && (leagueFilter.onchange = fetchMatches);
 // initial load
 fetchMatches();
 loadPredictions();
+
+// Import Firebase SDK
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
+import { 
+  getAuth, 
+  createUserWithEmailAndPassword, 
+  signInWithEmailAndPassword, 
+  signOut, 
+  onAuthStateChanged 
+} from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+import { 
+  getFirestore, 
+  doc, 
+  setDoc, 
+  getDoc 
+} from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
+
+// 🔹 Replace with your Firebase config
+const firebaseConfig = {
+  apiKey: "YOUR_KEY",
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_PROJECT.appspot.com",
+  messagingSenderId: "YOUR_SENDER_ID",
+  appId: "YOUR_APP_ID"
+};
+
+// Init Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+// Elements
+const signupForm = document.getElementById("signupForm");
+const loginForm = document.getElementById("loginForm");
+const showSignup = document.getElementById("showSignup");
+const showLogin = document.getElementById("showLogin");
+const logoutBtn = document.getElementById("logoutBtn");
+const userInfo = document.getElementById("userInfo");
+const userName = document.getElementById("userName");
+const userEmail = document.getElementById("userEmail");
+
+// Toggle forms
+showSignup.addEventListener("click", () => {
+  signupForm.classList.remove("hidden");
+  loginForm.classList.add("hidden");
+});
+showLogin.addEventListener("click", () => {
+  loginForm.classList.remove("hidden");
+  signupForm.classList.add("hidden");
+});
+
+// Signup
+document.getElementById("signupBtn").addEventListener("click", async () => {
+  const username = document.getElementById("signup-username").value;
+  const email = document.getElementById("signup-email").value;
+  const password = document.getElementById("signup-password").value;
+
+  try {
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    const user = userCredential.user;
+
+    // Save extra info in Firestore
+    await setDoc(doc(db, "users", user.uid), {
+      username: username,
+      email: email,
+      createdAt: new Date()
+    });
+
+    alert("Signup successful!");
+  } catch (error) {
+    alert(error.message);
+  }
+});
+
+// Login
+document.getElementById("loginBtn").addEventListener("click", async () => {
+  const email = document.getElementById("login-email").value;
+  const password = document.getElementById("login-password").value;
+
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+    alert("Login successful!");
+  } catch (error) {
+    alert(error.message);
+  }
+});
+
+// Logout
+logoutBtn.addEventListener("click", async () => {
+  await signOut(auth);
+});
+
+// Track auth state
+onAuthStateChanged(auth, async (user) => {
+  if (user) {
+    // Show user info
+    signupForm.classList.add("hidden");
+    loginForm.classList.add("hidden");
+    showLogin.classList.add("hidden");
+    showSignup.classList.add("hidden");
+    logoutBtn.classList.remove("hidden");
+    userInfo.classList.remove("hidden");
+
+    userEmail.textContent = user.email;
+
+    // Fetch Firestore username
+    const docRef = doc(db, "users", user.uid);
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+      userName.textContent = docSnap.data().username;
+    } else {
+      userName.textContent = "User";
+    }
+  } else {
+    // Hide user info
+    userInfo.classList.add("hidden");
+    logoutBtn.classList.add("hidden");
+    showLogin.classList.remove("hidden");
+    showSignup.classList.remove("hidden");
+  }
+});
