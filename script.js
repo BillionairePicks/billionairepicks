@@ -27,13 +27,15 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 /* ========== CONFIG: replace with your Firebase project config ========== */
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyAsSHeTgN10bkdywhlJoi_p4ni7bxUAm6c",
+  authDomain: "stat-stake.firebaseapp.com",
+  projectId: "stat-stake",
+  storageBucket: "stat-stake.firebasestorage.app",
+  messagingSenderId: "128167594111",
+  appId: "1:128167594111:web:20d36adbae750494efd74a",
+  measurementId: "G-H4HSTHZXX1"
 };
 /* ====================================================================== */
 
