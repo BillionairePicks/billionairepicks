@@ -1,1 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>About — StatStake (Sanele Langa)</title>
+  <style>
+    /* Clean, minimalist styles matching StatStake */
+    :root{
+      --bg: #ffffff;
+      --text: #111;
+      --muted: #6b6b6b;
+      --accent: #0077ff;
+      --card:#fbfbfc;
+      --radius:10px;
+      --shadow: 0 8px 24px rgba(15,15,25,0.06);
+      --maxwidth:900px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background:var(--bg);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+    }
 
+    header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:18px 20px;
+      border-bottom:1px solid #efefef;
+      background:#fff;
+    }
+    .logo{font-weight:800; color:var(--accent); font-size:20px}
+    .lead{color:var(--muted); font-size:14px}
+
+    main{
+      max-width:var(--maxwidth);
+      margin:40px auto;
+      padding:0 18px;
+    }
+
+    .hero{
+      background:var(--card);
+      border-radius:var(--radius);
+      padding:28px;
+      box-shadow:var(--shadow);
+    }
+
+    .hero h1{
+      margin:0 0 8px 0;
+      font-size:24px;
+    }
+    .hero p{margin:0 0 16px 0; color:var(--muted)}
+
+    .btn{
+      display:inline-block;
+      padding:10px 14px;
+      border-radius:8px;
+      border:none;
+      cursor:pointer;
+      font-weight:700;
+      text-decoration:none;
+    }
+    .btn-accent{ background:var(--accent); color:#fff }
+    .btn-outline{ background:transparent; border:1px solid #e6e6e6; color:var(--text) }
+
+    /* Modal */
+    .modal {
+      display:none;
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.45);
+      z-index:9999;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+    }
+    .modal-content {
+      width:100%;
+      max-width:560px;
+      background:#fff;
+      border-radius:12px;
+      padding:22px;
+      box-shadow:0 18px 40px rgba(10,10,25,0.12);
+      position:relative;
+    }
+    .close {
+      position:absolute;
+      right:14px;
+      top:12px;
+      font-size:20px;
+      color:#222;
+      cursor:pointer;
+      border:none;
+      background:transparent;
+    }
+
+    .meta { color:var(--muted); font-size:13px; margin-bottom:12px }
+    .about-text { font-size:15px; color:#222; margin-bottom:8px }
+    .goal { margin-top:12px; padding:14px; background:#f7fbff; border-left:4px solid var(--accent); border-radius:8px; color:#0b3a66 }
+
+    footer{ text-align:center; color:var(--muted); font-size:13px; margin:36px 0 80px 0 }
+    @media (max-width:640px){
+      .hero h1{ font-size:20px }
+      .modal-content{ padding:16px }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <div class="logo">StatStake</div>
+      <div class="lead">Football stats & predictions</div>
+    </div>
+    <div>
+      <!-- About button that opens the modal -->
+      <button id="openAbout" class="btn btn-outline">About</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <h1 id="hero-title">Learn more about StatStake</h1>
+      <p>StatStake is a student-led project making football analytics accessible and actionable. Click the About button to learn about the founder and our mission.</p>
+      <p>
+        <a href="#" id="openAboutInline" class="btn btn-accent">About the founder</a>
+      </p>
+    </section>
+  </main>
+
+  <!-- Modal: About -->
+  <div id="aboutModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="aboutTitle">
+    <div class="modal-content">
+      <button class="close" id="closeModal" aria-label="Close">&times;</button>
+      <h2 id="aboutTitle">About StatStake</h2>
+      <div class="meta">Founder: <strong>Sanele Langa</strong></div>
+
+      <div class="about-text">
+        Hello — I'm <strong>Sanele Langa</strong>, the founder of StatStake. I'm a student building simple, trustworthy sports analytics tools to help fans and casual bettors understand football data without needing a statistics degree.
+      </div>
+
+      <div class="goal">
+        <strong>Business goal</strong>
+        <p style="margin:8px 0 0 0;">
+          StatStake's mission is to become the go-to, student-driven analytics resource for football fans across local and international leagues. Over the next 18 months we aim to:
+          <ul style="margin:8px 0 0 12px 18px; color:#073354">
+            <li>Deliver clear, data-driven match summaries and daily predictions that are easy to use.</li>
+            <li>Grow a small, sustainable community by partnering with local student clubs and streaming results on low-cost hosting.</li>
+            <li>Train other student contributors in data collection and responsible analytics so we can scale the product while keeping costs low.</li>
+          </ul>
+        </p>
+        <p style="margin:6px 0 0 0; font-size:13px; color:#073354">We prioritise transparency, learning, and incremental improvements — built by students, for fans.</p>
+      </div>
+
+      <p style="margin-top:14px; color:var(--muted); font-size:14px;">
+        If you'd like to collaborate or provide feedback, email: <strong>hello@statstake.example</strong>
+      </p>
+    </div>
+  </div>
+
+  <footer>
+    © <span id="year"></span> StatStake — crafted by Sanele Langa
+  </footer>
+
+  <script>
+    // Simple modal logic
+    const openBtn = document.getElementById('openAbout');
+    const openInline = document.getElementById('openAboutInline');
+    const modal = document.getElementById('aboutModal');
+    const close = document.getElementById('closeModal');
+    const yearEl = document.getElementById('year');
+
+    yearEl.textContent = new Date().getFullYear();
+
+    function showModal() {
+      modal.style.display = 'flex';
+      // focus for accessibility
+      modal.querySelector('.modal-content').focus();
+    }
+    function hideModal() {
+      modal.style.display = 'none';
+    }
+
+    openBtn.addEventListener('click', (e) => { e.preventDefault(); showModal(); });
+    openInline.addEventListener('click', (e) => { e.preventDefault(); showModal(); });
+    close.addEventListener('click', hideModal);
+
+    // close on outside click
+    window.addEventListener('click', (e) => {
+      if (e.target === modal) hideModal();
+    });
+
+    // close on Esc
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.style.display === 'flex') hideModal();
+    });
+  </script>
+</body>
+</html>
