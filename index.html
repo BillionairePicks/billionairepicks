@@ -1,187 +1,211 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>StatStake</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>StatStake — Football</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <!-- Header -->
-  <header>
-    <div class="logo">StatStake</div>
-    <nav>
-      <a href="#stats">Stats</a>
+  <header class="site-header">
+    <div class="brand">
+      <div class="logo">StatStake</div>
+      <div class="tag">Football stats & predictions</div>
+    </div>
+
+    <nav class="main-nav">
+      <a href="#live">Live</a>
       <a href="#predictions">Predictions</a>
       <a href="#about">About</a>
     </nav>
-    <div class="auth-buttons">
-      <button id="loginBtn" class="login-btn">Login</button>
-      <button id="signupBtn" class="signup-btn">Sign Up</button>
+
+    <div class="auth-area">
+      <div id="userArea" class="user-area" style="display:none;">
+        <span id="userDisplay"></span>
+        <button id="logoutBtn" class="btn small">Logout</button>
+      </div>
+
+      <div id="authButtons" class="auth-buttons">
+        <button id="loginBtn" class="btn outline small">Login</button>
+        <button id="signupBtn" class="btn primary small">Sign Up</button>
+      </div>
     </div>
   </header>
 
-  <!-- Sections -->
-  <section id="stats" class="content">
-    <h2>Stats</h2>
-    <p>Live sports statistics will appear here.</p>
-  </section>
+  <!-- Main grid -->
+  <main class="container">
+    <!-- Left: Live matches + insights -->
+    <section id="live" class="panel">
+      <div class="panel-header">
+        <h2>Live & Today's Matches</h2>
+        <div class="controls">
+          <select id="leagueFilter">
+            <option value="">All leagues</option>
+            <option value="English Premier League">English Premier League</option>
+            <option value="La Liga">La Liga</option>
+            <option value="Serie A">Serie A</option>
+            <option value="Bundesliga">Bundesliga</option>
+            <option value="Ligue 1">Ligue 1</option>
+          </select>
+          <button id="refreshBtn" class="btn small">Refresh</button>
+        </div>
+      </div>
 
-  <section id="predictions" class="content">
-    <h2>Predictions</h2>
-    <p>AI-powered betting insights coming soon.</p>
-  </section>
+      <div id="matchesList" class="matches-list">
+        <p>Loading matches...</p>
+      </div>
+    </section>
 
-  <section id="about" class="content">
-    <h2>About StatStake</h2>
-    <p>StatStake provides clean, reliable sports stats and predictions to help fans and bettors make smarter decisions.</p>
+    <!-- Right: Predictions / Admin -->
+    <aside class="panel side">
+      <div class="panel-header">
+        <h3>Daily Predictions</h3>
+        <div id="adminControls" style="display:none;">
+          <button id="newPredictionBtn" class="btn small">New Prediction</button>
+        </div>
+      </div>
+
+      <div id="predictionsList" class="predictions-list">
+        <p>Loading predictions...</p>
+      </div>
+
+      <hr />
+
+      <div class="panel-footer">
+        <p><strong>Admin tip:</strong> Sign up and set your user doc `isAdmin: true` in Firestore to get admin rights.</p>
+      </div>
+    </aside>
+  </main>
+
+  <!-- About -->
+  <section id="about" class="container about">
+    <h2>About StatStake — Football</h2>
+    <p>StatStake focuses on football analytics, live match overviews, and daily expert predictions. Admins can publish predictions for users and each match shows a quick AI-style insight computed from available live data.</p>
   </section>
 
   <!-- Login Modal -->
   <div id="loginModal" class="modal">
     <div class="modal-content">
       <span id="closeLogin" class="close">&times;</span>
-      <h2>Login</h2>
+      <h3>Login</h3>
       <form id="loginForm">
-        <label for="login-email">Email</label>
-        <input type="email" id="login-email" required />
-
-        <label for="login-password">Password</label>
-        <input type="password" id="login-password" required />
-
-        <button type="submit" class="login-submit">Login</button>
+        <label>Email</label>
+        <input id="login-email" type="email" required />
+        <label>Password</label>
+        <input id="login-password" type="password" required />
+        <button type="submit" class="btn primary">Login</button>
       </form>
     </div>
   </div>
 
-  <!-- Sign Up Modal -->
+  <!-- Signup Modal -->
   <div id="signupModal" class="modal">
     <div class="modal-content">
       <span id="closeSignup" class="close">&times;</span>
-      <h2>Create Your Account</h2>
+      <h3>Create account</h3>
       <form id="signupForm">
-        <label for="signup-username">Username</label>
-        <input type="text" id="signup-username" required />
-
-        <label for="signup-email">Email</label>
-        <input type="email" id="signup-email" required />
-
-        <label for="signup-password">Password</label>
-        <input type="password" id="signup-password" required />
-
-        <label for="signup-confirm">Confirm Password</label>
-        <input type="password" id="signup-confirm" required />
-        
-        <!-- ✅ Google reCAPTCHA -->
-  <div class="g-recaptcha" data-sitekey="6LdArMgrAAAAABfD_86cWF8KUZVVy2BlBxB1mXcs"></div>
-        
-        <button type="submit" class="signup-submit">Sign Up</button>
-
-
-  <button type="submit" class="signup-submit">Sign Up</button>
+        <label>Username</label>
+        <input id="signup-username" type="text" required />
+        <label>Email</label>
+        <input id="signup-email" type="email" required />
+        <label>Password</label>
+        <input id="signup-password" type="password" required />
+        <label>Confirm password</label>
+        <input id="signup-confirm" type="password" required />
+        <button type="submit" class="btn primary">Sign Up</button>
       </form>
     </div>
   </div>
 
-  <!-- Back to Top Button -->
-  <button id="backToTop">↑ Top</button>
+  <!-- Prediction Editor Modal (admin) -->
+  <div id="predictionModal" class="modal">
+    <div class="modal-content">
+      <span id="closePrediction" class="close">&times;</span>
+      <h3>New Prediction</h3>
+      <form id="predictionForm">
+        <label>Date</label>
+        <input id="pred-date" type="date" required />
+        <label>Match (example: Team A vs Team B)</label>
+        <input id="pred-match" type="text" required />
+        <label>Prediction text</label>
+        <textarea id="pred-text" rows="4" required></textarea>
+        <label>Confidence (%)</label>
+        <input id="pred-confidence" type="number" min="0" max="100" value="60" required />
+        <button type="submit" class="btn primary">Publish Prediction</button>
+      </form>
+    </div>
+  </div>
 
-  <!-- Firebase + Script -->
-  <script type="module">
-    // Import Firebase SDK
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } 
-      from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-    import { getFirestore, doc, setDoc, serverTimestamp } 
-      from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+  <!-- Back to top -->
+  <button id="backToTop" class="back-top">↑</button>
 
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyAsSHeTgN10bkdywhlJoi_p4ni7bxUAm6c",
-  authDomain: "stat-stake.firebaseapp.com",
-  projectId: "stat-stake",
-  storageBucket: "stat-stake.firebasestorage.app",
-  messagingSenderId: "128167594111",
-  appId: "1:128167594111:web:20d36adbae750494efd74a",
-  measurementId: "G-H4HSTHZXX1"
-};
-    // Init Firebase
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const db = getFirestore(app);
-
-    // ===== Login Modal =====
-    const loginBtn = document.getElementById("loginBtn");
-    const loginModal = document.getElementById("loginModal");
-    const closeLogin = document.getElementById("closeLogin");
-
-    loginBtn.onclick = () => loginModal.style.display = "block";
-    closeLogin.onclick = () => loginModal.style.display = "none";
-    window.onclick = (e) => { if (e.target === loginModal) loginModal.style.display = "none"; };
-
-    // ===== Signup Modal =====
-    const signupBtn = document.getElementById("signupBtn");
-    const signupModal = document.getElementById("signupModal");
-    const closeSignup = document.getElementById("closeSignup");
-
-    signupBtn.onclick = () => signupModal.style.display = "block";
-    closeSignup.onclick = () => signupModal.style.display = "none";
-    window.onclick = (e) => { if (e.target === signupModal) signupModal.style.display = "none"; };
-
-    // ===== Handle Sign Up =====
-    document.getElementById("signupForm").addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const username = document.getElementById("signup-username").value;
-      const email = document.getElementById("signup-email").value;
-      const password = document.getElementById("signup-password").value;
-      const confirm = document.getElementById("signup-confirm").value;
-
-      if (password !== confirm) {
-        alert("Passwords do not match!");
-        return;
-      }
-
-      try {
-        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-        const uid = userCredential.user.uid;
-
-        await setDoc(doc(db, "users", uid), {
-          username,
-          email,
-          createdAt: serverTimestamp()
-        });
-
-        alert("Sign up successful!");
-        signupModal.style.display = "none";
-      } catch (error) {
-        alert(error.message);
-      }
-    });
-
-    // ===== Handle Login =====
-    document.getElementById("loginForm").addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const email = document.getElementById("login-email").value;
-      const password = document.getElementById("login-password").value;
-
-      try {
-        await signInWithEmailAndPassword(auth, email, password);
-        alert("Login successful!");
-        loginModal.style.display = "none";
-      } catch (error) {
-        alert(error.message);
-      }
-    });
-
-    // ===== Back to Top =====
-    const backToTopBtn = document.getElementById("backToTop");
-    window.addEventListener("scroll", () => {
-      backToTopBtn.style.display = window.scrollY > 300 ? "block" : "none";
-    });
-    backToTopBtn.addEventListener("click", () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-  </script>
- <script src="https://www.google.com/recaptcha/api.js" async defer></script> 
+  <!-- Firebase + App Script (module) -->
+  <script type="module" src="script.js"></script>
 </body>
 </html>
+style.css
+css
+Copy code
+:root{
+  --bg:#ffffff; --muted:#7a7a7a; --accent:#0077ff; --success:#28a745;
+  --card:#fcfcfd; --border:#e8e8e8;
+  --maxwidth:1200px;
+  --radius:10px;
+  --shadow:0 6px 18px rgba(20,20,30,0.06);
+}
+*{box-sizing:border-box}
+body{
+  margin:0; font-family:Inter,system-ui,Arial,sans-serif; background:var(--bg); color:#111;
+}
+.site-header{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:18px 24px; border-bottom:1px solid var(--border); background:#fff; position:sticky; top:0; z-index:100;
+}
+.brand{display:flex; flex-direction:column;}
+.logo{font-weight:800; color:var(--accent); font-size:20px;}
+.tag{font-size:12px; color:var(--muted)}
+.main-nav a{margin:0 12px; text-decoration:none; color:#222; font-weight:600}
+.main-nav{display:flex; align-items:center}
+.auth-area{display:flex; align-items:center}
+.auth-buttons{display:flex; gap:8px}
+.user-area{display:flex; gap:8px; align-items:center}
+
+.container{max-width:var(--maxwidth); margin:28px auto; padding:0 18px; display:grid; grid-template-columns:1fr 360px; gap:20px}
+.panel{background:var(--card); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); padding:18px}
+.side{position:sticky; top:86px; height:fit-content}
+.panel-header{display:flex; justify-content:space-between; align-items:center}
+.controls{display:flex; gap:8px; align-items:center}
+.matches-list{margin-top:12px; display:flex; flex-direction:column; gap:10px; max-height:64vh; overflow:auto; padding-right:6px}
+.match{display:flex; justify-content:space-between; align-items:center; padding:10px; border-radius:8px; border:1px solid rgba(0,0,0,0.03)}
+.match .left{display:flex; gap:12px; align-items:center}
+.league{font-size:12px; color:var(--muted)}
+.teams{font-weight:700}
+.time{font-size:13px; color:var(--muted)}
+.insight{margin-top:8px; font-size:13px; color:#333}
+.predictions-list{margin-top:12px; display:flex; flex-direction:column; gap:10px}
+.pred-card{padding:10px; border-radius:8px; border:1px solid rgba(0,0,0,0.04); background:#fff}
+.pred-meta{font-size:12px; color:var(--muted); margin-bottom:6px}
+
+.btn{border:none;padding:8px 10px;border-radius:8px; cursor:pointer; font-weight:600}
+.btn.small{padding:6px 8px;font-size:13px}
+.btn.primary{background:var(--accent); color:#fff}
+.btn.outline{background:transparent; border:1px solid var(--border)}
+.btn.small{font-size:13px}
+.back-top{position:fixed; right:24px; bottom:26px; display:none; border-radius:50%; padding:10px 12px; background:var(--accent); color:#fff; border:none; box-shadow:var(--shadow); cursor:pointer}
+
+.about{max-width:var(--maxwidth); margin:18px auto; padding:18px; border-radius:var(--radius); background:var(--card); border:1px solid var(--border)}
+
+/* Modal */
+.modal{display:none; position:fixed; inset:0; background:rgba(0,0,0,0.45); z-index:9999; align-items:center; justify-content:center}
+.modal .modal-content{width:95%; max-width:480px; background:#fff; padding:18px; border-radius:12px; box-shadow:var(--shadow)}
+.close{float:right; cursor:pointer; font-size:18px}
+label{display:block; font-size:13px; margin-top:8px; font-weight:600}
+input,textarea,select{width:100%; padding:8px; margin-top:6px; border:1px solid var(--border); border-radius:8px; font-size:14px}
+textarea{resize:vertical}
+
+/* Responsive */
+@media (max-width:900px){
+  .container{grid-template-columns:1fr; padding:0 12px}
+  .side{position:static}
+}
