@@ -144,3 +144,93 @@
   <script type="module" src="script.js"></script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StatStake - Login & Signup</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      display: flex;
+      justify-content: flex-end;
+      padding: 10px 20px;
+      border-bottom: 1px solid #eee;
+      background: #fafafa;
+    }
+    .btn {
+      padding: 8px 14px;
+      margin-left: 10px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .btn-primary { background: #0077ff; color: #fff; }
+    .btn-secondary { background: #f0f0f0; color: #333; }
+    .form-container {
+      max-width: 400px;
+      margin: 40px auto;
+      padding: 20px;
+      border: 1px solid #eee;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    .hidden { display: none; }
+    #userInfo {
+      margin: 20px auto;
+      max-width: 400px;
+      padding: 10px;
+      background: #f5f9ff;
+      border: 1px solid #d0e6ff;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <button id="showLogin" class="btn btn-secondary">Login</button>
+    <button id="showSignup" class="btn btn-primary">Sign Up</button>
+    <button id="logoutBtn" class="btn btn-secondary hidden">Logout</button>
+  </header>
+
+  <!-- Signup Form -->
+  <div id="signupForm" class="form-container hidden">
+    <h2>Create Account</h2>
+    <input type="text" id="signup-username" placeholder="Username" required />
+    <input type="email" id="signup-email" placeholder="Email" required />
+    <input type="password" id="signup-password" placeholder="Password" required />
+    <button id="signupBtn" class="btn btn-primary">Sign Up</button>
+  </div>
+
+  <!-- Login Form -->
+  <div id="loginForm" class="form-container hidden">
+    <h2>Login</h2>
+    <input type="email" id="login-email" placeholder="Email" required />
+    <input type="password" id="login-password" placeholder="Password" required />
+    <button id="loginBtn" class="btn btn-primary">Login</button>
+  </div>
+
+  <!-- Show user info after login -->
+  <div id="userInfo" class="hidden">
+    <h3>Welcome, <span id="userName"></span> 👋</h3>
+    <p>Email: <span id="userEmail"></span></p>
+  </div>
+
+  <!-- Firebase SDK -->
+  <script type="module" src="script.js"></script>
+</body>
+</html>
