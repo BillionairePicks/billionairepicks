@@ -32,7 +32,23 @@
   </ul>
 </nav>
   </header>
+<script>
+const aboutBtn = document.getElementById('aboutBtn');
+const aboutModal = document.getElementById('aboutModal');
+const closeAboutModal = document.getElementById('closeAboutModal');
 
+if (aboutBtn && aboutModal && closeAboutModal) {
+  aboutBtn.addEventListener('click', () => {
+    aboutModal.classList.remove('hidden');
+  });
+  closeAboutModal.addEventListener('click', () => {
+    aboutModal.classList.add('hidden');
+  });
+  window.addEventListener('click', (event) => {
+    if (event.target === aboutModal) aboutModal.classList.add('hidden');
+  });
+}
+</script>
   <!-- HERO -->
   <section class="hero">
     <h1>Football Stats. Smarter Predictions.</h1>
