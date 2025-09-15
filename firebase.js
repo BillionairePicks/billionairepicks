@@ -7,8 +7,51 @@ const firebaseConfig = {
   messagingSenderId: "128167594111",
   appId: "1:128167594111:web:20d36adbae750494efd74a",
   measurementId: "G-H4HSTHZXX1"
-};
 
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+
+// Elements
+const loginBtn = document.getElementById("loginBtn");
+const signupBtn = document.getElementById("signupBtn");
+const messageBox = document.getElementById("authMessage");
+
+if (loginBtn) {
+  loginBtn.addEventListener("click", async () => {
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+      messageBox.textContent = "✅ Login successful! Redirecting...";
+      messageBox.style.color = "green";
+      setTimeout(() => {
+        window.location.href = "index.html"; // redirect after login
+      }, 1500);
+    } catch (err) {
+      messageBox.textContent = `❌ ${err.message}`;
+      messageBox.style.color = "red";
+    }
+  });
+}
+
+if (signupBtn) {
+  signupBtn.addEventListener("click", async () => {
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
+    try {
+      await auth.createUserWithEmailAndPassword(email, password);
+      messageBox.textContent = "✅ Signup successful! Redirecting...";
+      messageBox.style.color = "green";
+      setTimeout(() => {
+        window.location.href = "index.html"; // redirect after signup
+      }, 1500);
+    } catch (err) {
+      messageBox.textContent = `❌ ${err.message}`;
+      messageBox.style.color = "red";
+    }
+  });
+}
 // Initialize Firebase
 const app = firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
