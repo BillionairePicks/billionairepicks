@@ -84,3 +84,71 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+// Initialize Firebase (replace with your config)
+const firebaseConfig = {
+  apiKey: "AIzaSyAsSHeTgN10bkdywhlJoi_p4ni7bxUAm6c",
+  authDomain: "stat-stake.firebaseapp.com",
+  // ... your other config
+};
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+
+// Define your admin emails (or use custom claims for production)
+const adminEmails = ["langa9660@gmail.com"]; // Replace with your admin emails
+
+// Elements
+const loginBtn = document.getElementById('loginBtn');
+const signupBtn = document.getElementById('signupBtn');
+const authForm = document.getElementById('authForm');
+const authMessage = document.getElementById('authMessage');
+const isAdminCheckbox = document.getElementById('isAdmin');
+
+if (loginBtn) {
+  loginBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    handleAuth('login');
+  });
+}
+
+if (signupBtn) {
+  signupBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    handleAuth('signup');
+  });
+}
+
+function handleAuth(type) {
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+  const isAdmin = isAdminCheckbox && isAdminCheckbox.checked;
+
+  if (!email || !password) {
+    showMessage('Email and password required.');
+    return;
+  }
+
+  if (type === 'login') {
+    auth.signInWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        if (isAdmin && !adminEmails.includes(email)) {
+          showMessage('Not authorized as admin.');
+          auth.signOut();
+        } else {
+          showMessage(isAdmin ? 'Admin login successful!' : 'User login successful!');
+          // Redirect or show content based on role
+        }
+      })
+      .catch((error) => showMessage(error.message));
+  } else if (type === 'signup') {
+    auth.createUserWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        showMessage('Signup successful! Please login.');
+        // Optionally: set custom claims via admin SDK on backend
+      })
+      .catch((error) => showMessage(error.message));
+  }
+}
+
+function showMessage(msg) {
+  if (authMessage) authMessage.textContent = msg;
+}
