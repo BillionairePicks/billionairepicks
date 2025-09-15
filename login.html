@@ -1,1 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+  <!-- Firebase SDKs (update version as needed) -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+</head>
+<body>
+  <form id="login-form">
+    <input type="email" id="email" placeholder="Email" required />
+    <input type="password" id="password" placeholder="Password" required />
+    <button type="submit">Login</button>
+    <div id="error" style="color:red;"></div>
+  </form>
 
+  <script src="login.js"></script>
+</body>
+</html>
