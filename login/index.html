@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - BillionairePicks</title>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; }
+    form { max-width: 320px; margin: auto; }
+    label { display: block; margin-bottom: 8px; }
+    input { width: 100%; padding: 8px; margin-bottom: 16px; }
+    button { padding: 8px 20px; }
+    .error { color: red; margin-bottom: 12px; }
+  </style>
+</head>
+<body>
+  <h2>Login</h2>
+  <div id="error" class="error"></div>
+  <form id="login-form">
+    <label>Email:</label>
+    <input type="email" id="email" required />
+    <label>Password:</label>
+    <input type="password" id="password" required />
+    <button type="submit">Login</button>
+  </form>
+  <p>Don't have an account? <a href="../signup/index.html">Sign up</a></p>
+  <script>
+    // TODO: Replace with your Firebase config
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_AUTH_DOMAIN",
+      projectId: "YOUR_PROJECT_ID",
+      appId: "YOUR_APP_ID"
+    };
+    firebase.initializeApp(firebaseConfig);
+
+    const auth = firebase.auth();
+    const form = document.getElementById('login-form');
+    const errorDiv = document.getElementById('error');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      errorDiv.textContent = '';
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      auth.signInWithEmailAndPassword(email, password)
+        .then(() => {
+          // Redirect or show success
+          window.location.href = '/'; // Redirect to home or dashboard
+        })
+        .catch(err => {
+          errorDiv.textContent = err.message;
+        });
+    });
+  </script>
+</body>
+</html>
