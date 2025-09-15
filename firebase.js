@@ -57,3 +57,54 @@ authForm.addEventListener("submit", async (e) => {
     alert(err.message);
   }
 });
+
+// ----------------- API-SPORTS LIVE FOOTBALL DATA -----------------
+const statsContainer = document.getElementById("liveStats");
+
+// Replace with your API-Sports key
+const API_KEY = "ea44b839d82e5238bc3f3ffd4fbe465b";
+const LEAGUE_ID = 39; // Example: Premier League
+const SEASON = 2025;
+
+// Fetch live fixtures
+async function fetchLiveStats() {
+  try {
+    const response = await fetch(
+      `https://v3.football.api-sports.io/fixtures?live=all`,
+      {
+        method: "GET",
+        headers: {
+          "x-apisports-key": ea44b839d82e5238bc3f3ffd4fbe465b
+          "x-rapidapi-host": "v3.football.api-sports.io"
+        }
+      }
+    );
+
+    const data = await response.json();
+
+    if (data.response.length === 0) {
+      statsContainer.innerHTML = "<p>No live matches right now.</p>";
+      return;
+    }
+
+    // Build HTML for live matches
+    let html = "<ul>";
+    data.response.forEach(match => {
+      const home = match.teams.home.name;
+      const away = match.teams.away.name;
+      const score = `${match.goals.home} - ${match.goals.away}`;
+      html += `<li><strong>${home}</strong> vs <strong>${away}</strong> : ${score}</li>`;
+    });
+    html += "</ul>";
+
+    statsContainer.innerHTML = html;
+
+  } catch (error) {
+    console.error(error);
+    statsContainer.innerHTML = "<p>Failed to load live stats.</p>";
+  }
+}
+
+// Auto-refresh every 60s
+fetchLiveStats();
+setInterval(fetchLiveStats, 60000);
