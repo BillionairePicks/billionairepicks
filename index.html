@@ -1,210 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>StatStake — Football</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <!-- Header -->
-  <header class="site-header">
-    <div class="brand">
-      <div class="logo">StatStake</div>
-      <div class="tag">Football stats & predictions</div>
-    </div>
-
-    <nav class="main-nav">
-      <a href="#live">Live</a>
-      <a href="#predictions">Predictions</a>
-      <a href="#about">About</a>
-    </nav>
-
-    <div class="auth-area">
-      <div id="userArea" class="user-area" style="display:none;">
-        <span id="userDisplay"></span>
-        <button id="logoutBtn" class="btn small">Logout</button>
-      </div>
-
-      <div id="authButtons" class="auth-buttons">
-        <button id="loginBtn" class="btn outline small">Login</button>
-        <button id="signupBtn" class="btn primary small">Sign Up</button>
-      </div>
-    </div>
-  </header>
-
-  <!-- Main grid -->
-  <main class="container">
-    <!-- Left: Live matches + insights -->
-    <section id="live" class="panel">
-      <div class="panel-header">
-        <h2>Live & Today's Matches</h2>
-        <div class="controls">
-          <select id="leagueFilter">
-            <option value="">All leagues</option>
-            <option value="English Premier League">English Premier League</option>
-            <option value="La Liga">La Liga</option>
-            <option value="Serie A">Serie A</option>
-            <option value="Bundesliga">Bundesliga</option>
-            <option value="Ligue 1">Ligue 1</option>
-          </select>
-          <button id="refreshBtn" class="btn small">Refresh</button>
-        </div>
-      </div>
-
-      <div id="matchesList" class="matches-list">
-        <p>Loading matches...</p>
-      </div>
-    </section>
-
-    <!-- Right: Predictions / Admin -->
-    <aside class="panel side">
-      <div class="panel-header">
-        <h3>Daily Predictions</h3>
-        <div id="adminControls" style="display:none;">
-          <button id="newPredictionBtn" class="btn small">New Prediction</button>
-        </div>
-      </div>
-
-      <div id="predictionsList" class="predictions-list">
-        <p>Loading predictions...</p>
-      </div>
-
-      <hr />
-
-      <div class="panel-footer">
-        <p><strong>Admin tip:</strong> Sign up and set your user doc `isAdmin: true` in Firestore to get admin rights.</p>
-      </div>
-    </aside>
-  </main>
-
-  <!-- About -->
-  <section id="about" class="container about">
-    <h2>About StatStake — Football</h2>
-    <p>StatStake focuses on football analytics, live match overviews, and daily expert predictions. Admins can publish predictions for users and each match shows a quick AI-style insight computed from available live data.</p>
-  </section>
-
-  <!-- Login Modal -->
-  <div id="loginModal" class="modal">
-    <div class="modal-content">
-      <span id="closeLogin" class="close">&times;</span>
-      <h3>Login</h3>
-      <form id="loginForm">
-        <label>Email</label>
-        <input id="login-email" type="email" required />
-        <label>Password</label>
-        <input id="login-password" type="password" required />
-        <button type="submit" class="btn primary">Login</button>
-      </form>
-    </div>
-  </div>
-
-  <!-- Signup Modal -->
-  <div id="signupModal" class="modal">
-    <div class="modal-content">
-      <span id="closeSignup" class="close">&times;</span>
-      <h3>Create account</h3>
-      <form id="signupForm">
-        <label>Username</label>
-        <input id="signup-username" type="text" required />
-        <label>Email</label>
-        <input id="signup-email" type="email" required />
-        <label>Password</label>
-        <input id="signup-password" type="password" required />
-        <label>Confirm password</label>
-        <input id="signup-confirm" type="password" required />
-        <button type="submit" class="btn primary">Sign Up</button>
-      </form>
-    </div>
-  </div>
-
-  <!-- Prediction Editor Modal (admin) -->
-  <div id="predictionModal" class="modal">
-    <div class="modal-content">
-      <span id="closePrediction" class="close">&times;</span>
-      <h3>New Prediction</h3>
-      <form id="predictionForm">
-        <label>Date</label>
-        <input id="pred-date" type="date" required />
-        <label>Match (example: Team A vs Team B)</label>
-        <input id="pred-match" type="text" required />
-        <label>Prediction text</label>
-        <textarea id="pred-text" rows="4" required></textarea>
-        <label>Confidence (%)</label>
-        <input id="pred-confidence" type="number" min="0" max="100" value="60" required />
-        <button type="submit" class="btn primary">Publish Prediction</button>
-      </form>
-    </div>
-  </div>
-
-  <!-- Back to top -->
-  <button id="backToTop" class="back-top">↑</button>
-
-  <!-- Firebase + App Script (module) -->
-  <script type="module" src="script.js"></script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>StatStake - Login & Signup</title>
+  <title>StatStake - Football Live Stats</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #fff;
-      margin: 0;
-      padding: 0;
-    }
+    body { font-family: Arial, sans-serif; background: #fff; margin: 0; padding: 0; }
     header {
-      display: flex;
-      justify-content: flex-end;
-      padding: 10px 20px;
-      border-bottom: 1px solid #eee;
-      background: #fafafa;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 15px 20px; border-bottom: 1px solid #eee; background: #fafafa;
     }
-    .btn {
-      padding: 8px 14px;
-      margin-left: 10px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: bold;
-    }
+    .btn { padding: 8px 14px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; }
     .btn-primary { background: #0077ff; color: #fff; }
-    .btn-secondary { background: #f0f0f0; color: #333; }
-    .form-container {
-      max-width: 400px;
-      margin: 40px auto;
-      padding: 20px;
-      border: 1px solid #eee;
-      border-radius: 10px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-    }
-    input {
-      width: 100%;
-      padding: 10px;
-      margin: 8px 0;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-    }
+    .btn-secondary { background: #f0f0f0; color: #333; margin-left: 8px; }
+    .form-container { max-width: 400px; margin: 20px auto; padding: 20px; border: 1px solid #eee; border-radius: 10px; }
+    input { width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 6px; }
     .hidden { display: none; }
-    #userInfo {
-      margin: 20px auto;
-      max-width: 400px;
-      padding: 10px;
-      background: #f5f9ff;
-      border: 1px solid #d0e6ff;
-      border-radius: 8px;
-    }
+    #userInfo { max-width: 400px; margin: 20px auto; padding: 15px; background: #f5f9ff; border: 1px solid #d0e6ff; border-radius: 8px; }
+    #liveStats { max-width: 800px; margin: 30px auto; padding: 20px; background: #fafafa; border-radius: 8px; border: 1px solid #eee; }
+    #liveStats h2 { margin-top: 0; }
+    .match { border-bottom: 1px solid #ddd; padding: 12px 0; }
+    .match:last-child { border-bottom: none; }
   </style>
 </head>
 <body>
   <header>
-    <button id="showLogin" class="btn btn-secondary">Login</button>
-    <button id="showSignup" class="btn btn-primary">Sign Up</button>
-    <button id="logoutBtn" class="btn btn-secondary hidden">Logout</button>
+    <h1>StatStake ⚽</h1>
+    <div>
+      <button id="showLogin" class="btn btn-secondary">Login</button>
+      <button id="showSignup" class="btn btn-primary">Sign Up</button>
+      <button id="logoutBtn" class="btn btn-secondary hidden">Logout</button>
+    </div>
   </header>
 
   <!-- Signup Form -->
@@ -224,136 +50,22 @@
     <button id="loginBtn" class="btn btn-primary">Login</button>
   </div>
 
-  <!-- Show user info after login -->
+  <!-- User Info -->
   <div id="userInfo" class="hidden">
     <h3>Welcome, <span id="userName"></span> 👋</h3>
     <p>Email: <span id="userEmail"></span></p>
   </div>
 
-  <!-- Firebase SDK -->
+  <!-- Live Stats -->
+  <div id="liveStats" class="hidden">
+    <h2>Live Football Matches</h2>
+    <div id="matches"></div>
+  </div>
+
+  <!-- Firebase + App -->
   <script type="module" src="script.js"></script>
 </body>
 </html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>About — StatStake (Sanele Langa)</title>
-  <style>
-    /* Clean, minimalist styles matching StatStake */
-    :root{
-      --bg: #ffffff;
-      --text: #111;
-      --muted: #6b6b6b;
-      --accent: #0077ff;
-      --card:#fbfbfc;
-      --radius:10px;
-      --shadow: 0 8px 24px rgba(15,15,25,0.06);
-      --maxwidth:900px;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background:var(--bg);
-      color:var(--text);
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      line-height:1.5;
-    }
-
-    header{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:18px 20px;
-      border-bottom:1px solid #efefef;
-      background:#fff;
-    }
-    .logo{font-weight:800; color:var(--accent); font-size:20px}
-    .lead{color:var(--muted); font-size:14px}
-
-    main{
-      max-width:var(--maxwidth);
-      margin:40px auto;
-      padding:0 18px;
-    }
-
-    .hero{
-      background:var(--card);
-      border-radius:var(--radius);
-      padding:28px;
-      box-shadow:var(--shadow);
-    }
-
-    .hero h1{
-      margin:0 0 8px 0;
-      font-size:24px;
-    }
-    .hero p{margin:0 0 16px 0; color:var(--muted)}
-
-    .btn{
-      display:inline-block;
-      padding:10px 14px;
-      border-radius:8px;
-      border:none;
-      cursor:pointer;
-      font-weight:700;
-      text-decoration:none;
-    }
-    .btn-accent{ background:var(--accent); color:#fff }
-    .btn-outline{ background:transparent; border:1px solid #e6e6e6; color:var(--text) }
-
-    /* Modal */
-    .modal {
-      display:none;
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,0.45);
-      z-index:9999;
-      align-items:center;
-      justify-content:center;
-      padding:20px;
-    }
-    .modal-content {
-      width:100%;
-      max-width:560px;
-      background:#fff;
-      border-radius:12px;
-      padding:22px;
-      box-shadow:0 18px 40px rgba(10,10,25,0.12);
-      position:relative;
-    }
-    .close {
-      position:absolute;
-      right:14px;
-      top:12px;
-      font-size:20px;
-      color:#222;
-      cursor:pointer;
-      border:none;
-      background:transparent;
-    }
-
-    .meta { color:var(--muted); font-size:13px; margin-bottom:12px }
-    .about-text { font-size:15px; color:#222; margin-bottom:8px }
-    .goal { margin-top:12px; padding:14px; background:#f7fbff; border-left:4px solid var(--accent); border-radius:8px; color:#0b3a66 }
-
-    footer{ text-align:center; color:var(--muted); font-size:13px; margin:36px 0 80px 0 }
-    @media (max-width:640px){
-      .hero h1{ font-size:20px }
-      .modal-content{ padding:16px }
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <div>
-      <div class="logo">StatStake</div>
-      <div class="lead">Football stats & predictions</div>
-    </div>
-    <div>
       <!-- About button that opens the modal -->
       <button id="openAbout" class="btn btn-outline">About</button>
     </div>
