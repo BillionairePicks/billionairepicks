@@ -73,3 +73,43 @@
   </footer>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StatStake | Login / Sign Up</title>
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js"></script>
+  <script defer src="firebase.js"></script>
+</head>
+<body>
+  <header class="header">
+    <div class="logo">StatStake</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="login.html" class="active">Login / Sign Up</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="section">
+    <h2>Login or Sign Up</h2>
+    <form id="authForm" class="auth-form">
+      <input type="email" id="email" placeholder="Enter your email" required>
+      <input type="password" id="password" placeholder="Enter your password" required>
+      <div class="btn-group">
+        <button type="button" id="loginBtn" class="btn">Login</button>
+        <button type="button" id="signupBtn" class="btn secondary">Sign Up</button>
+      </div>
+    </form>
+    <p id="authMessage"></p>
+  </section>
+
+  <footer class="footer">
+    <p>&copy; 2025 StatStake. All rights reserved.</p>
+  </footer>
+</body>
+</html>
