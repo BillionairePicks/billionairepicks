@@ -1,97 +1,31 @@
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: black;
-  color: white;
+.form-container {
+  max-width: 350px;
+  margin: 80px auto;
+  padding: 20px;
+  background: #1a1a1a;
+  border-radius: 8px;
+  text-align: center;
 }
 
-/* Navbar */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-  background: 
-    url('bg-1.jpg') no-repeat center center/cover,
-    black;
-  background-blend-mode: multiply;
+.form-container h2 {
+  margin-bottom: 15px;
 }
 
-.logo {
-  /* Be sure to include the font in your HTML, e.g. via Adobe Fonts or local files */
-  font-family: 'Base Neue Super Condensed ExtraBold Oblique', 'Oswald', Arial, sans-serif;
-  font-size: 2rem;
-  font-weight: 900;
-  font-style: oblique;
-  font-stretch: condensed;
-  color: white;
-  letter-spacing: 0.05em;
+.form-container input {
+  display: block;
+  width: 90%;
+  margin: 10px auto;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
 }
 
-.nav-links a {
-  margin-left: 1.5rem;
-  color: white;
-  text-decoration: none;
+.form-container button {
+  width: 95%;
+  padding: 10px;
+  background: yellow;
+  color: black;
   font-weight: bold;
-}
-
-/* Slider */
-.slider {
-  position: relative;
-  max-width: 100%;
-  overflow: hidden;
-  margin: 2rem auto;
-  text-align: center;
-}
-
-.slides {
-  display: flex;
-  width: 700%;
-  animation: slide 12s infinite;
-}
-
-.slide {
-  flex: 1;
-  padding: 2rem;
-}
-
-.slide a {
-  color: yellow;
-  text-decoration: none;
-  font-size: 1.5rem;
-}
-
-@keyframes slide {
-  0% { transform: translateX(0%); }
-  20% { transform: translateX(0%); }
-  25% { transform: translateX(-100%); }
-  45% { transform: translateX(-100%); }
-  50% { transform: translateX(-200%); }
-  70% { transform: translateX(-200%); }
-  75% { transform: translateX(-300%); }
-  95% { transform: translateX(-300%); }
-  100% { transform: translateX(0%); }
-}
-
-.dots {
-  text-align: center;
-  margin-top: 1rem;
-}
-
-dot {
-  height: 12px;
-  width: 12px;
-  margin: 0 5px;
-  background-color: gray;
-  border-radius: 50%;
-  display: inline-block;
-}
-.dot.active {
-  background-color: white;
-}
-
-/* About section */
-.about {
-  padding: 2rem;
-  text-align: center;
+  border: none;
+  cursor: pointer;
 }
