@@ -11,15 +11,21 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background: url('d6993319-3f5b-4018-8180-3f2e8baee6d8.jpg') no-repeat center center/cover;
+  background: 
+    url('bg-1.jpg') no-repeat center center/cover,
+    black;
+  background-blend-mode: multiply;
 }
 
 .logo {
-  font-family: 'Oswald', sans-serif; /* Replace with Nenesuper */
+  /* Be sure to include the font in your HTML, e.g. via Adobe Fonts or local files */
+  font-family: 'Base Neue Super Condensed ExtraBold Oblique', 'Oswald', Arial, sans-serif;
   font-size: 2rem;
-  font-weight: bold;
+  font-weight: 900;
   font-style: oblique;
+  font-stretch: condensed;
   color: white;
+  letter-spacing: 0.05em;
 }
 
 .nav-links a {
@@ -72,7 +78,7 @@ body {
   margin-top: 1rem;
 }
 
-.dot {
+dot {
   height: 12px;
   width: 12px;
   margin: 0 5px;
