@@ -19,7 +19,16 @@
       <a href="#" id="logout-btn">Logout</a>
     </div>
   </nav>
+<script>
+  const auth = firebase.auth();
 
+  document.getElementById("logout-btn").addEventListener("click", () => {
+    auth.signOut().then(() => {
+      alert("Logged out successfully.");
+      window.location.href = "index.html";
+    });
+  });
+</script>
   <!-- Slider -->
   <div class="slider">
     <div class="slides">
