@@ -11,14 +11,13 @@
 </head>
 <body>
   <!-- Navigation -->
-  <nav class="navbar">
-    <div class="logo">StatStake</div>
-    <div class="nav-links">
-      <a href="login/index.html">Login</a>
-      <a href="signup/index.html">Sign Up</a>
-      <a href="#" id="logout-btn">Logout</a>
-    </div>
-  </nav>
+ <nav class="navbar">
+  <div class="logo">StatStake</div>
+  <div class="nav-links" id="nav-links">
+    <a href="login/index.html" id="login-link">Login</a>
+    <a href="signup/index.html" id="signup-link">Sign Up</a>
+  </div>
+</nav>
 <script>
   const auth = firebase.auth();
 
@@ -57,5 +56,52 @@
   </section>
 
   <script src="script.js"></script>
+  <!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+
+<script>
+  // Firebase Config (same as login/signup pages)
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyAsSHeTgN10bkdywhlJoi_p4ni7bxUAm6c",
+  authDomain: "stat-stake.firebaseapp.com",
+  projectId: "stat-stake",
+  storageBucket: "stat-stake.firebasestorage.app",
+  messagingSenderId: "128167594111",
+  appId: "1:128167594111:web:20d36adbae750494efd74a",
+  measurementId: "G-H4HSTHZXX1"
+};
+  const app = firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+
+  const navLinks = document.getElementById("nav-links");
+
+  // 🔑 Check if user is logged in
+  auth.onAuthStateChanged((user) => {
+    if (user) {
+      // If logged in → show email + logout
+      navLinks.innerHTML = `
+        <span style="margin-right:15px; color:white;">Welcome, ${user.email}</span>
+        <a href="#" id="logout-btn">Logout</a>
+      `;
+
+      // Logout event
+      document.getElementById("logout-btn").addEventListener("click", () => {
+        auth.signOut().then(() => {
+          alert("Logged out successfully.");
+          window.location.reload();
+        });
+      });
+
+    } else {
+      // If not logged in → show login & signup
+      navLinks.innerHTML = `
+        <a href="login/index.html" id="login-link">Login</a>
+        <a href="signup/index.html" id="signup-link">Sign Up</a>
+      `;
+    }
+  });
+</script>
 </body>
 </html>
