@@ -2,17 +2,47 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Sign Up - StatStake</title>
   <link rel="stylesheet" href="../style.css" />
 </head>
 <body>
-  <nav>
-    <a href="../index.html">Home</a>
-  </nav>
-  <main>
-    <h1>Sign Up</h1>
-    <p>This is the Sign Up page.</p>
-    <!-- Your sign up form will go here -->
-  </main>
+  <div class="form-container">
+    <h2>Create account</h2>
+    <form id="signup-form">
+      <input id="signup-email" type="email" placeholder="Email" required />
+      <input id="signup-password" type="password" placeholder="Password" required />
+      <button type="submit">Sign Up</button>
+    </form>
+    <p style="color:#aaa; margin-top:10px;">Already have an account? <a href="../login/index.html">Login</a></p>
+  </div>
+
+  <script type="module">
+    import { auth } from '../firebase-config.js';
+    import { setPersistence, browserLocalPersistence, createUserWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
+
+    // If user already logged in, redirect away
+    onAuthStateChanged(auth, user => {
+      if (user) {
+        window.location.href = '../index.html';
+      }
+    });
+
+    const form = document.getElementById('signup-form');
+    setPersistence(auth, browserLocalPersistence).catch(e => console.error(e));
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('signup-email').value.trim();
+      const password = document.getElementById('signup-password').value;
+      try {
+        await createUserWithEmailAndPassword(auth, email, password);
+        alert('Account created — redirecting.');
+        window.location.href = '../index.html';
+      } catch (err) {
+        alert('Sign up error: ' + err.message);
+      }
+    });
+  </script>
 </body>
 </html>
