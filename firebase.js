@@ -17,3 +17,4 @@ setInterval(() => {
   slides.style.transform = `translateX(-${slideIndex * 100}%)`;
   showSlide();
 }, 4000);
+auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
